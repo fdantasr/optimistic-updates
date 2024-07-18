@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": "1234",
+      "name": "Felipe Dantas",
+      "username": "fdantasr",
+      "blocked": false
+    },
+    {
+      "id": "5678",
+      "name": "Fillipe Augustos",
+      "username": "fillipeags",
+      "blocked": false
+    },
+    {
+      "id": "9101",
+      "name": "Conrad Crawford",
+      "username": "cnrad",
+      "blocked": true
+    },
+    {
+      "id": "1122",
+      "name": "Will",
+      "username": "willdoescode",
+      "blocked": true
+    },
+    {
+      "id": "3245",
+      "name": "Ben Awad",
+      "username": "benawad",
+      "blocked": true
+    }
+  ]
+}
