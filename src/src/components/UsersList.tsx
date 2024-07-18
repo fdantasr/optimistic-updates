@@ -39,7 +39,10 @@ export function UsersList() {
             </div>
           </div>
           <Switch
-            onCheckedChange={(blockedParam) => handleBlocedChange(user.id, blockedParam)} //função de callback com o parametro blockedParam inferido
+            checked={user.blocked}
+            onCheckedChange={(blockedParam) =>
+              handleBlocedChange(user.id, blockedParam)
+            } //função de callback com o parametro blockedParam inferido
           />
         </div>
       ))}
