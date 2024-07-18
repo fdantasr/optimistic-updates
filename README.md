@@ -1,1 +1,6 @@
-![Texto Alternativo]([https://github.com/user-attachments/assets/5a8e8830-6c5e-4f76-9a37-8bc77ca16723](https://github.com/user-attachments/assets/f568c31f-5786-4e03-b9cb-5699c2acb4ca))
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2f78f88d-6fc7-4f3d-bf38-f44b60a0c2ab" alt="Texto Alternativo" width="45%">
+  <img src="https://github.com/user-attachments/assets/a9d73a0f-2109-456d-ae4f-b32cdcc94be6" alt="Texto Alternativo" width="45%">
+</p>
+
