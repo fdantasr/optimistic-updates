@@ -1,3 +1,4 @@
+import { useUpdateUser } from "../../app/hooks/useUpdateUser";
 import { useUsers } from "../../app/hooks/useUsers";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Skeleton } from "./ui/skeleton";
@@ -5,9 +6,10 @@ import { Switch } from "./ui/switch";
 
 export function UsersList() {
   const { users, isLoading } = useUsers();
+  const { updateUser } = useUpdateUser();
 
-  function handleBlocedChange(blocked: boolean) {
-    console.log(blocked);
+  async function handleBlocedChange(id: string, blocked: boolean) {
+    await updateUser({ id, blocked });
   }
 
   return (
@@ -37,8 +39,7 @@ export function UsersList() {
             </div>
           </div>
           <Switch
-            // checked={user.blocked}
-            onCheckedChange={handleBlocedChange}
+            onCheckedChange={(blocked) => handleBlocedChange(user.id, blocked)}
           />
         </div>
       ))}
