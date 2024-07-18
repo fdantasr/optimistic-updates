@@ -1,8 +1,11 @@
+import { useMutationState } from "@tanstack/react-query";
 import { useUpdateUser } from "../../app/hooks/useUpdateUser";
 import { useUsers } from "../../app/hooks/useUsers";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Skeleton } from "./ui/skeleton";
 import { Switch } from "./ui/switch";
+import { CREATE_USER_MUTATION_KEY } from "../../app/hooks/useCreateUser";
+import { IUser } from "../../app/types/IUser";
 
 export function UsersList() {
   const { users, isLoading } = useUsers();

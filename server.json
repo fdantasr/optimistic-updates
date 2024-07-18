@@ -4,13 +4,13 @@
       "id": "1234",
       "name": "Felipe Dantas",
       "username": "fdantasr",
-      "blocked": false
+      "blocked": true
     },
     {
       "id": "5678",
       "name": "Fillipe Augustos",
       "username": "fillipeags",
-      "blocked": false
+      "blocked": true
     },
     {
       "id": "9101",
@@ -22,13 +22,14 @@
       "id": "1122",
       "name": "Will",
       "username": "willdoescode",
-      "blocked": true
+      "blocked": false
     },
     {
       "id": "3245",
       "name": "Ben Awad",
       "username": "benawad",
-      "blocke": true
+      "blocke": true,
+      "blocked": false
     }
   ]
 }

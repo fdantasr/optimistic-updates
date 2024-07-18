@@ -15,14 +15,15 @@ export function UserForm() {
     event.preventDefault();
 
     try {
+      setName("");
+      setUsername("");
+      
       await newUser({
         name,
         username,
         blocked: false,
       });
-      toast.success("Usuário cadastrado com sucesso!");
-      setName("");
-      setUsername("");
+      // toast.success("Usuário cadastrado com sucesso!");
     } catch {
       toast.error("Erro ao cadastrar usuário!");
     }
@@ -34,13 +35,13 @@ export function UserForm() {
           value={name}
           onChange={(event) => setName(event.target.value)}
           placeholder="Nome do usuário"
-          disabled={isLoading}
+          // disabled={isLoading} //Nao precisa na UI otimista
         />
         <Input
           value={username}
           onChange={(event) => setUsername(event.target.value)}
           placeholder="@ no github"
-          disabled={isLoading}
+          // disabled={isLoading}
         />
       </div>
       <Button className="mt-3 w-full" type="submit">

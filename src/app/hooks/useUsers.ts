@@ -4,7 +4,7 @@ import { listUsers } from "../services/listUsers";
 export const USERS_QUERY_KEY = ["users"];
 
 export function useUsers() {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isFetching } = useQuery({
     queryKey: USERS_QUERY_KEY,
     queryFn: listUsers,
     staleTime: Infinity,
