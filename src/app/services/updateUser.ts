@@ -11,7 +11,7 @@ export async function updateUser({
 }: IUpdateUserDTO) {
   await sleep();
   const response = await fetch(`http://localhost:3000/users/${id}`, {
-    method: "PATCH", //atualiza um recurso existente parcialmente
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
