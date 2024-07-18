@@ -1,0 +1,28 @@
+{
+  "files": [],
+  "compilerOptions": {
+    /*Bundler Mode*/
+
+    /*Linting*/
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    /*Paths Aliases*/
+    "baseUrl": ".",
+   "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}
