@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createUser } from "../services/createUser";
-import { USERS_QUERY_KEY } from "./useUsers";
-import { IUser } from "../types/IUser";
+import { USERS_QUERY_KEY, UsersQueryData } from "./useUsers";
 
 export const CREATE_USER_MUTATION_KEY = ["createUser"];
 
@@ -16,26 +15,43 @@ export function useCreateUser() {
     onMutate: (variables) => {
       const tmpUserId = String(Math.random());
 
-      queryClient.setQueryData<IUser[]>(USERS_QUERY_KEY, (old) =>
+      queryClient.setQueryData<UsersQueryData>(USERS_QUERY_KEY, (old) =>
         //pega o array e concatena com o novo usuário no cache
         old?.concat({
           ...variables,
           id: tmpUserId,
+          status: "pending",
         })
       );
       return { tmpUserId };
     },
 
     //Cmpara o id de cada user no cache com o tmpUserId armazenado no context
-    onSuccess: (data, _variables, context) => {
-      queryClient.setQueryData<IUser[]>(USERS_QUERY_KEY, (old) =>
+    onSuccess: async (data, _variables, context) => {
+      await queryClient.cancelQueries({ queryKey: USERS_QUERY_KEY });
+      queryClient.setQueryData<UsersQueryData>(USERS_QUERY_KEY, (old) =>
         old?.map((user) => (user.id === context.tmpUserId ? data : user))
       );
     },
+
+
     //RollBack: remove o usuário com o tmpUserId do cache, pois a criação do usuário real falhou.
-    onError: (_error, _variables, context) => {
-      queryClient.setQueryData<IUser[]>(USERS_QUERY_KEY, (old) =>
-        old?.filter((user) => user.id !== context?.tmpUserId)
+    //OPÇÃO 1  - SÓ REMOVE O ITEM DA LISTA
+    // onError: async (_error, _variables, context) => {
+    //   await queryClient.cancelQueries({ queryKey: USERS_QUERY_KEY });
+
+    //   queryClient.setQueryData<UsersQueryData>(USERS_QUERY_KEY, (old) =>
+    //     old?.filter((user) => user.id !== context?.tmpUserId)
+    //   );
+    // },
+
+    //OPÇÃO 2 - MANTEM NA LISTA COM STATUS ERROR
+    onError: async (_error, _variables, context) => {
+      await queryClient.cancelQueries({ queryKey: USERS_QUERY_KEY });
+      queryClient.setQueryData<UsersQueryData>(USERS_QUERY_KEY, (old) =>
+        old?.map((user) =>
+          user.id === context?.tmpUserId ? { ...user, status: "error" } : user
+        )
       );
     },
 
@@ -45,6 +61,8 @@ export function useCreateUser() {
     //     queryKey: USERS_QUERY_KEY,
     //   });
     // },
+
+
   });
 
   return {

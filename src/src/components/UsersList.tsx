@@ -1,5 +1,6 @@
 import { useUpdateUser } from "../../app/hooks/useUpdateUser";
 import { useUsers } from "../../app/hooks/useUsers";
+import { cn } from "../../app/libs/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Skeleton } from "./ui/skeleton";
 import { Switch } from "./ui/switch";
@@ -26,7 +27,11 @@ export function UsersList() {
       {users.map((user) => (
         <div
           key={user.id}
-          className=" p-4 border rounded-md flex items-center justify-between "
+          className={cn(
+            " p-4 border rounded-md flex items-center justify-between ",
+            user.status === "pending" && "opacity-70",
+            user.status === "error" && "destructive bg-destructive/10"
+          )}
         >
           <div className="flex items-center gap-4">
             <Avatar>
@@ -40,6 +45,7 @@ export function UsersList() {
           </div>
           <Switch
             checked={user.blocked}
+            disabled={user.status === "pending" || user.status === "error"}
             onCheckedChange={(blockedParam) =>
               handleBlocedChange(user.id, blockedParam)
             } //função de callback com o parametro blockedParam inferido
