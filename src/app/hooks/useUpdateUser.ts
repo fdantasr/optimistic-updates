@@ -7,6 +7,7 @@ export function useUpdateUser() {
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: updateUser,
+    //indepente de onde eu chame o updateUser, ele vai atualizar a lista de usuários
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: USERS_QUERY_KEY,

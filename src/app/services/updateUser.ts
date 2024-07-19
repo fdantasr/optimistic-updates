@@ -1,7 +1,7 @@
 import { sleep } from "../libs/utils";
 import { IUser } from "../types/IUser";
 
-type IUpdateUserDTO = Partial<Omit<IUser, "id">> & { id: string };
+type IUpdateUserDTO = Partial<Omit<IUser, "id">> & { id: string };  //trasnsforma todos os campos de IUser em opcionais, exceto o id
 
 export async function updateUser({
   name,

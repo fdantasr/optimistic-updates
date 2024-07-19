@@ -4,7 +4,7 @@
       "id": "1234",
       "name": "Felipe Dantas",
       "username": "fdantasr",
-      "blocked": true
+      "blocked": false
     },
     {
       "id": "5678",
@@ -29,6 +29,12 @@
       "name": "Ben Awad",
       "username": "benawad",
       "blocke": true,
+      "blocked": false
+    },
+    {
+      "id": "90ab",
+      "name": "Djalma de Almeida Mendes",
+      "username": "Djas03",
       "blocked": false
     }
   ]

@@ -7,7 +7,7 @@ export function useUsers() {
   const { data, isLoading } = useQuery({
     queryKey: USERS_QUERY_KEY,
     queryFn: listUsers,
-    staleTime: Infinity,
+    staleTime: Infinity, 
   });
 
   return {
