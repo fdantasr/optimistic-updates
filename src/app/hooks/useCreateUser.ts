@@ -12,7 +12,7 @@ export function useCreateUser() {
     mutationKey: CREATE_USER_MUTATION_KEY,
     mutationFn: createUser,
 
-    //executa assim que chamo mutateAsync, ou seja antes da promise ser resolvida
+    //executa assim que chamo mutateAsync, ou seja antes da promise ser resolvida (mutationFn)
     onMutate: (variables) => {
       const tmpUserId = String(Math.random());
 
@@ -26,12 +26,13 @@ export function useCreateUser() {
       return { tmpUserId };
     },
 
+    //Cmpara o id de cada user no cache com o tmpUserId armazenado no context
     onSuccess: (data, _variables, context) => {
       queryClient.setQueryData<IUser[]>(USERS_QUERY_KEY, (old) =>
         old?.map((user) => (user.id === context.tmpUserId ? data : user))
       );
     },
-
+    //RollBack: remove o usuário com o tmpUserId do cache, pois a criação do usuário real falhou.
     onError: (_error, _variables, context) => {
       queryClient.setQueryData<IUser[]>(USERS_QUERY_KEY, (old) =>
         old?.filter((user) => user.id !== context?.tmpUserId)
